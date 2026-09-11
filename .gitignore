@@ -1,0 +1,4 @@
+/agentlog
+/dist/
+*.test
+.DS_Store
