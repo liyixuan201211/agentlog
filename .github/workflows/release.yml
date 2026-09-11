@@ -1,0 +1,39 @@
+name: Release
+
+# Triggered by pushing a tag such as v0.1.0.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
+      - name: Build cross-platform binaries
+        run: |
+          set -e
+          VERSION="${GITHUB_REF_NAME}"
+          LDFLAGS="-s -w -X main.version=${VERSION}"
+          mkdir -p dist
+          build() {
+            GOOS="$1" GOARCH="$2" CGO_ENABLED=0 \
+              go build -trimpath -ldflags "$LDFLAGS" \
+              -o "dist/agentlog-$1-$2$3" ./cmd/agentlog
+          }
+          build linux  amd64 ""
+          build linux  arm64 ""
+          build darwin amd64 ""
+          build darwin arm64 ""
+          build windows amd64 ".exe"
+          cd dist && sha256sum * > checksums.txt && ls -l
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
