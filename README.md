@@ -1,5 +1,10 @@
 # agentlog
 
+[![CI](https://github.com/liyixuan201211/agentlog/actions/workflows/ci.yml/badge.svg)](https://github.com/liyixuan201211/agentlog/actions/workflows/ci.yml)
+[![Go](https://img.shields.io/badge/Go-1.22%2B-00ADD8?logo=go&logoColor=white)](https://go.dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)](go.mod)
+
 **Your AI coding agents already wrote a diary. Nothing could read it. Now something can.**
 
 Every agent CLI keeps a private, undocumented transcript of everything you did together — and every one of them keeps it in a different format, in a different corner of your home directory. Ask yourself right now: *what did I tell Claude Code last Tuesday? What did that Codex session actually change? Where did all my tokens go this month?*
