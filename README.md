@@ -51,12 +51,26 @@ Search runs a raw-byte pre-filter before parsing, so it stays fast even with hun
 
 ## Quick start
 
-Requires Go 1.22 or newer.
+### Download a binary
+
+Prebuilt binaries for Linux, macOS and Windows (amd64 and arm64) are on the
+[releases page](https://github.com/liyixuan201211/agentlog/releases/latest).
+`checksums.txt` is published alongside them.
 
 ```bash
-git clone https://github.com/liyixuan201211/agentlog
-cd agentlog
-go build -o agentlog ./cmd/agentlog
+# macOS (Apple silicon) — swap darwin-arm64 for your platform
+curl -LO https://github.com/liyixuan201211/agentlog/releases/latest/download/agentlog-darwin-arm64
+chmod +x agentlog-darwin-arm64 && mv agentlog-darwin-arm64 agentlog
+```
+
+### Or build from source
+
+Requires Go 1.22 or newer. There are no dependencies to download.
+
+```bash
+go install github.com/liyixuan201211/agentlog/cmd/agentlog@latest
+# or
+git clone https://github.com/liyixuan201211/agentlog && cd agentlog && make build
 ```
 
 Then point it at your history:
